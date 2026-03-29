@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birdeye Peak — Institutional On-Chain Intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            accent: { DEFAULT: '#0EA5E9', dim: '#0284C7', muted: '#0c2d40' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #09090b; color: #e4e4e7; }
+    .border-grid { border-color: rgba(255,255,255,0.06); }
+    .text-muted { color: #71717a; }
+    .card-dark { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); }
+    .card-dark:hover { background: rgba(255,255,255,0.04); border-color: rgba(14,165,233,0.25); transition: all 0.2s; }
+    .stat-block { background: rgba(14,165,233,0.05); border: 1px solid rgba(14,165,233,0.12); }
+    .glow { box-shadow: 0 0 50px rgba(14,165,233,0.1); }
+    .ticker { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: #0EA5E9; letter-spacing: 0.06em; }
+    .accent-line { background: linear-gradient(90deg, #0EA5E9 0%, transparent 100%); height: 1px; }
+    section { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .office-tab { cursor: pointer; transition: all 0.2s; }
+    .office-tab.active { background: rgba(14,165,233,0.08); border-color: rgba(14,165,233,0.3); color: #e4e4e7; }
+    .office-panel { display: none; }
+    .office-panel.active { display: grid; }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ─── NAV ─────────────────────────────────── -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-grid backdrop-blur-md" style="background:rgba(9,9,11,0.88)">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+        <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+        <path d="M11 7L7 9.5V14.5L11 17L15 14.5V9.5L11 7Z" fill="#0EA5E9" opacity="0.3"/>
+        <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+      </svg>
+      <span class="text-sm font-semibold tracking-tight text-zinc-100">Birdeye <span class="text-sky-400">Peak</span></span>
+      <span class="ml-1 text-xs font-mono px-2 py-0.5 rounded border border-zinc-800 text-zinc-600">CLOSED BETA</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="#workflows" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Workflows</a>
+      <a href="#compliance" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Compliance</a>
+      <a href="#report" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Research</a>
+      <a href="#demo" class="text-xs font-medium px-4 py-1.5 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white">Request demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<!-- SB7 §1: Customer as Hero — the PM, Risk Officer, Compliance team managing professional capital -->
+<section class="pt-32 pb-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Live data ticker -->
+    <div class="mb-10 flex items-center gap-5 overflow-hidden opacity-60">
+      <span class="ticker whitespace-nowrap">SOLANA DEX LIQUIDITY DEPTH</span>
+      <div class="accent-line flex-1 max-w-[80px]"></div>
+      <span class="ticker whitespace-nowrap">WHALE NET FLOW +$340M · 48H</span>
+      <div class="accent-line flex-1 max-w-[80px] hidden md:block"></div>
+      <span class="ticker whitespace-nowrap hidden md:block">FAIR VALUE MARK · 5M+ TOKENS</span>
+      <div class="accent-line flex-1 max-w-[80px] hidden lg:block"></div>
+      <span class="ticker whitespace-nowrap hidden lg:block">SOC-2 CERTIFIED · 99.9% UPTIME</span>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <div class="mb-5 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 text-zinc-500 text-xs font-mono">
+          <span class="w-1.5 h-1.5 rounded-full bg-sky-400" style="animation: pulse 2.5s infinite"></span>
+          Institutional On-Chain Intelligence
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-zinc-50 mb-5">
+          Manage digital asset exposure<br/>
+          with <span class="text-sky-400">institutional-grade</span><br/>
+          on-chain intelligence.
+        </h1>
+
+        <p class="text-zinc-400 text-base leading-relaxed mb-6 max-w-md">
+          From investment research to LP reporting — Birdeye Peak gives your fund the unified on-chain data infrastructure that professional capital requires.
+        </p>
+
+        <!-- Proof of relevance for each role in the buying committee -->
+        <div class="mb-8 space-y-2">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-zinc-600 w-28 flex-shrink-0">PORTFOLIO MGR</span>
+            <span class="text-xs text-zinc-400">Real-time DEX liquidity depth and whale flow signals before allocation</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-zinc-600 w-28 flex-shrink-0">RISK OFFICER</span>
+            <span class="text-xs text-zinc-400">Fair value pricing, derivatives exposure, and liquidity risk modeling</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-zinc-600 w-28 flex-shrink-0">COMPLIANCE</span>
+            <span class="text-xs text-zinc-400">SOC-2 audit trails, regulatory-grade exports, KYC/AML-ready data</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-zinc-600 w-28 flex-shrink-0">LP REPORTING</span>
+            <span class="text-xs text-zinc-400">Verifiable on-chain evidence for quarterly allocation decisions</span>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <a href="#demo" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white text-sm font-medium glow">
+            Request a data demo
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </a>
+          <a href="#report" class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded border border-zinc-800 hover:border-zinc-600 text-zinc-300 text-sm transition-colors">
+            Read Q1 2026 Liquidity Report
+          </a>
+        </div>
+
+        <div class="mt-6 flex items-center gap-5">
+          <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div><span class="text-xs text-zinc-600">99.9% uptime SLA</span></div>
+          <div class="w-px h-3 bg-zinc-800"></div>
+          <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div><span class="text-xs text-zinc-600">SOC-2 compliant</span></div>
+          <div class="w-px h-3 bg-zinc-800"></div>
+          <div class="flex items-center gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div><span class="text-xs text-zinc-600">&lt;100ms latency</span></div>
+        </div>
+      </div>
+
+      <!-- Terminal visual -->
+      <div class="card-dark rounded-xl p-5 font-mono text-xs glow">
+        <div class="flex items-center gap-2 mb-4 pb-3 border-b border-zinc-800">
+          <div class="w-2.5 h-2.5 rounded-full bg-red-500/60"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></div>
+          <div class="w-2.5 h-2.5 rounded-full bg-green-500/60"></div>
+          <span class="ml-2 text-zinc-600">peak.birdeye.so — IC Report · Q1 2026</span>
+        </div>
+        <div class="space-y-1.5 text-zinc-400">
+          <div class="text-zinc-600 text-xs mb-3">FUND: Apex Digital Capital · REPORTING PERIOD: Q1 2026</div>
+          <div><span class="text-zinc-600">TOTAL ON-CHAIN EXPOSURE</span>  <span class="text-zinc-200 ml-2">$847M</span></div>
+          <div><span class="text-zinc-600">SOLANA ALLOCATION</span>       <span class="text-zinc-200 ml-2">34.2% ↑</span></div>
+          <div><span class="text-zinc-600">FAIR VALUE MARK</span>         <span class="text-emerald-400 ml-2">VERIFIED ✓</span></div>
+          <div class="border-t border-zinc-800 my-2"></div>
+          <div><span class="text-zinc-600">LIQUIDITY RISK EVENTS</span>   <span class="text-emerald-400 ml-2">0 MATERIAL</span></div>
+          <div><span class="text-zinc-600">WHALE FLOW ALERTS</span>       <span class="text-sky-400 ml-2">12 FLAGGED</span></div>
+          <div><span class="text-zinc-600">SLIPPAGE INCIDENTS</span>      <span class="text-emerald-400 ml-2">NONE ✓</span></div>
+          <div class="border-t border-zinc-800 my-2"></div>
+          <div><span class="text-zinc-600">AUDIT TRAIL</span>             <span class="text-emerald-400 ml-2">EXPORT READY ✓</span></div>
+          <div><span class="text-zinc-600">COMPLIANCE STATUS</span>       <span class="text-emerald-400 ml-2">SOC-2 VERIFIED ✓</span></div>
+          <div class="border-t border-zinc-800 my-2"></div>
+          <div class="text-sky-400">▶ READY FOR LP DISTRIBUTION</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL PROOF STRIP ──────────────────── -->
+<div class="py-8 px-6 border-y border-grid">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs text-zinc-600 font-mono uppercase tracking-widest text-center mb-6">Trusted by institutional desks across</p>
+    <div class="flex flex-wrap items-center justify-center gap-8 opacity-40">
+      <span class="text-xs font-semibold text-zinc-400 tracking-widest uppercase">Crypto Hedge Funds</span>
+      <span class="text-zinc-700">·</span>
+      <span class="text-xs font-semibold text-zinc-400 tracking-widest uppercase">TradFi Asset Managers</span>
+      <span class="text-zinc-700">·</span>
+      <span class="text-xs font-semibold text-zinc-400 tracking-widest uppercase">Digital Asset VCs</span>
+      <span class="text-zinc-700">·</span>
+      <span class="text-xs font-semibold text-zinc-400 tracking-widest uppercase">Investment Banks</span>
+      <span class="text-zinc-700">·</span>
+      <span class="text-xs font-semibold text-zinc-400 tracking-widest uppercase">Corporate Treasuries</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PROBLEM (SB7 §2) ──────────────────── -->
+<!-- Research insight: the real enemy is fragmented, non-institutional-grade data across the FULL fund lifecycle -->
+<section class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">The problem</p>
+      <h2 class="text-3xl font-semibold text-zinc-100 max-w-2xl mx-auto leading-snug">
+        Professional capital is running on data built for someone else.
+      </h2>
+      <p class="text-zinc-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">CEX-heavy platforms miss the on-chain layer. Retail tools lack the audit trail. Traditional risk methodologies don't apply to DeFi. And when the LP asks, you're assembling answers from four systems that don't talk to each other.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4 mb-6">
+      <div class="card-dark rounded-xl p-6">
+        <div class="w-8 h-8 rounded-lg bg-red-500/10 border border-red-500/15 flex items-center justify-center mb-4">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v6M7 10v.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/><circle cx="7" cy="7" r="6" stroke="#ef4444" stroke-width="1"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Front office</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">CEX-only data misses DeFi price discovery. Liquidity is fragmented across chains. "Reliable insights for confident allocation" requires on-chain depth that your current tools don't have.</p>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/15 flex items-center justify-center mb-4">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2v10" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Mid office</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">Traditional risk models don't apply to crypto. High volatility and fragmented liquidity make price discovery inconsistent. Settlement risk varies across exchanges. Your VaR model is missing on-chain inputs.</p>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/15 flex items-center justify-center mb-4">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 3h10v8H2z" stroke="#a855f7" stroke-width="1"/><path d="M5 3V2h4v1" stroke="#a855f7" stroke-width="1"/></svg>
+        </div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Back office</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">DeFi transactions create accounting complexity that simple CEX exports can't resolve. A single DEX activity generates multiple transaction types. Responding to an audit means pulling data from 6 different places.</p>
+      </div>
+    </div>
+
+    <!-- The real stakes — what happens when you can't answer -->
+    <div class="card-dark rounded-xl p-6 border border-red-500/8">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-red-500/10 border border-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-zinc-300 mb-1">"What's our on-chain exposure?"</p>
+            <p class="text-xs text-zinc-600">Your LP asks at the quarterly call. You don't have a unified answer because the data lives in 4 systems with no common taxonomy.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-red-500/10 border border-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-zinc-300 mb-1">"Can you produce an audit trail?"</p>
+            <p class="text-xs text-zinc-600">Regulator inquires. You have the trades, but not the on-chain provenance, fair-value marks, or verified counterparty data that auditors require.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded bg-red-500/10 border border-red-500/15 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 2l6 6M8 2L2 8" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="text-xs font-semibold text-zinc-300 mb-1">"Why didn't we see that move?"</p>
+            <p class="text-xs text-zinc-600">A whale accumulated $340M in your position. The data was on-chain 48 hours before the market moved. Your tools were watching the CEX.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WORKFLOWS (SB7 §4 — Plan) ─────────── -->
+<!-- Research insight: Amberdata's Front/Mid/Back office segmentation resonates with institutional buyers -->
+<section id="workflows" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">Built for your desk</p>
+      <h2 class="text-3xl font-semibold text-zinc-100 max-w-xl mx-auto leading-snug">
+        One platform across the full investment lifecycle.
+      </h2>
+      <p class="text-zinc-500 mt-3 max-w-lg mx-auto text-sm">From research to allocation to compliance reporting — the on-chain data layer your fund needs, at every stage.</p>
+    </div>
+
+    <!-- Office tabs -->
+    <div class="flex gap-2 mb-6 flex-wrap justify-center">
+      <button onclick="switchTab('front')" id="tab-front" class="office-tab active text-xs font-mono px-4 py-2 rounded-lg border border-zinc-800 text-zinc-400">FRONT OFFICE</button>
+      <button onclick="switchTab('mid')" id="tab-mid" class="office-tab text-xs font-mono px-4 py-2 rounded-lg border border-zinc-800 text-zinc-500">MID OFFICE</button>
+      <button onclick="switchTab('back')" id="tab-back" class="office-tab text-xs font-mono px-4 py-2 rounded-lg border border-zinc-800 text-zinc-500">BACK OFFICE</button>
+    </div>
+
+    <!-- Front office -->
+    <div id="panel-front" class="office-panel active grid md:grid-cols-3 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-sky-400 mb-3">INVESTMENT RESEARCH</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Generate on-chain alpha before it reaches the market</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Identify institutional wallet accumulation, token distribution patterns, and liquidity buildup 24–72 hours before price movement reflects it. Not a leading indicator — on-chain evidence.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Smart wallet tracking (500M+ labeled)</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Cross-chain institutional flow signals</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Token unlock and distribution schedules</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-sky-400 mb-3">PRE-TRADE AUDIT</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Know the liquidity depth before the order enters the market</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Real-time DEX pool depth, cross-pool liquidity comparison, and slippage modeling for large on-chain executions. The data that CEX-focused tools cannot provide — especially on Solana.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Solana DEX liquidity depth (native)</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Cross-pool slippage modeling</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Exportable pre-trade audit reports</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-sky-400 mb-3">PORTFOLIO MANAGEMENT</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Monitor your on-chain allocation in real time</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Unified view of digital asset exposure across CEX, DEX, staking, and DeFi protocols. Track concentration risk, liquidity position, and whale-level flows affecting your holdings.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Unified CEX + DEX portfolio view</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Real-time concentration risk alerts</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-sky-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">IC-ready portfolio dashboards</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mid office -->
+    <div id="panel-mid" class="office-panel grid md:grid-cols-3 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-amber-400 mb-3">RISK MODELING</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">On-chain inputs for models built for traditional risk</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Traditional VaR models don't capture DeFi-specific risk: liquidation cascades, oracle manipulation, liquidity fragmentation. Peak provides the on-chain data to extend your existing risk framework.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">DeFi liquidation risk signals</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Cross-exchange settlement risk</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">API integration for quant models</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-amber-400 mb-3">FAIR VALUE PRICING</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Mark-to-market with on-chain verified pricing</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">CEX-sourced pricing misses DeFi price discovery and introduces manipulable single-source dependency. Peak provides multi-venue, on-chain verified fair value marks that meet regulatory standards.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">5M+ tokens fair value coverage</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Multi-venue price aggregation</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Regulatory-grade methodology docs</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-amber-400 mb-3">DERIVATIVES MONITORING</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">On-chain derivatives data for funding rate and options exposure</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Monitor perpetual funding rates, options Greeks, implied volatility, and open interest across on-chain derivatives venues. Assess liquidation risk before it cascades into spot markets.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Perp funding rates + OI tracking</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Liquidation risk cascade signals</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-amber-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">IV / volatility surface modeling</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back office -->
+    <div id="panel-back" class="office-panel grid md:grid-cols-3 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-purple-400 mb-3">AUDIT & COMPLIANCE</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Respond to regulatory inquiries without scrambling</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">When the auditor asks, you need comprehensive on-chain provenance, transaction history, and fair value marks — not a manual export from 6 different systems. Peak maintains a complete, exportable audit trail.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">SOC-2 certified data infrastructure</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Complete on-chain transaction history</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Regulatory-ready export formats</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-purple-400 mb-3">LP REPORTING</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Answer LP questions with on-chain evidence, not estimates</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Quarterly LP reports require verifiable allocation data, performance attribution, and risk disclosures. Peak generates the on-chain evidence layer that backs every number in your report.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Verified on-chain performance data</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Risk exposure documentation</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">IC-ready report templates</span></div>
+        </div>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-purple-400 mb-3">KYC / AML</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-2">Verify counterparty provenance in decentralized markets</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">The pseudonymous nature of on-chain activity creates compliance blind spots. Peak's wallet intelligence layer identifies wallet associations, flags sanctioned addresses, and provides source-of-wealth context.</p>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Wallet association mapping</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">Sanctions screening integration</span></div>
+          <div class="flex items-center gap-2"><div class="w-1 h-1 rounded-full bg-purple-400 flex-shrink-0"></div><span class="text-xs text-zinc-500">KYT-ready transaction monitoring</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GUIDE / AUTHORITY (SB7 §3) ─────────── -->
+<section id="compliance" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4">Why trust us</p>
+        <h2 class="text-3xl font-semibold text-zinc-100 leading-snug mb-5">
+          The only institutional terminal built natively on Solana.
+        </h2>
+        <p class="text-zinc-400 leading-relaxed mb-5">Kaiko is built for exchange data. Nansen is built for smart money. Neither has real-time DEX depth on Solana. Birdeye Peak is DeFi-native — built from the chain up, not adapted from CeFi down.</p>
+        <p class="text-zinc-400 leading-relaxed mb-8">JPMorgan, Visa, and State Street are settling on Solana. The RWA market on Solana reached $1.71B in February 2026 (+45% MoM). The institutions that need Solana intelligence have exactly one terminal built for them.</p>
+
+        <!-- Empathy quotes -->
+        <div class="space-y-3">
+          <div class="card-dark rounded-lg p-4 flex items-start gap-3">
+            <span class="text-sky-400 font-mono text-base mt-0.5 flex-shrink-0">"</span>
+            <p class="text-sm text-zinc-400 italic leading-relaxed">Finally, the noise is gone. I can see market structure clearly — and I can back it with on-chain data my compliance team accepts.</p>
+          </div>
+          <div class="card-dark rounded-lg p-4 flex items-start gap-3">
+            <span class="text-sky-400 font-mono text-base mt-0.5 flex-shrink-0">"</span>
+            <p class="text-sm text-zinc-400 italic leading-relaxed">We stopped answering LP questions with estimates. Peak is our source of truth for on-chain reporting.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="grid grid-cols-2 gap-3 mb-5">
+          <div class="stat-block rounded-xl p-5">
+            <div class="font-mono text-2xl font-semibold text-zinc-100 mb-1">99.9%</div>
+            <div class="text-xs text-zinc-500">API uptime SLA</div>
+          </div>
+          <div class="stat-block rounded-xl p-5">
+            <div class="font-mono text-2xl font-semibold text-zinc-100 mb-1">&lt;100ms</div>
+            <div class="text-xs text-zinc-500">Data latency</div>
+          </div>
+          <div class="stat-block rounded-xl p-5">
+            <div class="font-mono text-2xl font-semibold text-zinc-100 mb-1">5M+</div>
+            <div class="text-xs text-zinc-500">Tokens tracked</div>
+          </div>
+          <div class="stat-block rounded-xl p-5">
+            <div class="font-mono text-2xl font-semibold text-zinc-100 mb-1">SOC-2</div>
+            <div class="text-xs text-zinc-500">Certified</div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 p-3 card-dark rounded-lg">
+            <div class="w-5 h-5 rounded border border-sky-400/30 bg-sky-400/5 flex items-center justify-center flex-shrink-0">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5l2.5 2.5 4.5-4.5" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-xs text-zinc-400">Native Solana DEX depth — no competitor has this at institutional grade</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 card-dark rounded-lg">
+            <div class="w-5 h-5 rounded border border-sky-400/30 bg-sky-400/5 flex items-center justify-center flex-shrink-0">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5l2.5 2.5 4.5-4.5" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-xs text-zinc-400">Unified CEX + DEX data with standardized asset taxonomy</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 card-dark rounded-lg">
+            <div class="w-5 h-5 rounded border border-sky-400/30 bg-sky-400/5 flex items-center justify-center flex-shrink-0">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5l2.5 2.5 4.5-4.5" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-xs text-zinc-400">API integrates with Bloomberg, Snowflake, Python quant workflows</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 card-dark rounded-lg">
+            <div class="w-5 h-5 rounded border border-sky-400/30 bg-sky-400/5 flex items-center justify-center flex-shrink-0">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5l2.5 2.5 4.5-4.5" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-xs text-zinc-400">SOC-2 certified — passes institutional procurement and compliance review</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 card-dark rounded-lg">
+            <div class="w-5 h-5 rounded border border-sky-400/30 bg-sky-400/5 flex items-center justify-center flex-shrink-0">
+              <svg width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 4.5l2.5 2.5 4.5-4.5" stroke="#0EA5E9" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <span class="text-xs text-zinc-400">Regulatory-grade data methodology docs included for every data product</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INDIRECT CTA — Gated Report (SB7 §5) ─── -->
+<section id="report" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="card-dark rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center gap-8 border border-sky-500/8">
+      <div class="flex-1">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-400/20 bg-sky-400/5 text-sky-400 text-xs font-mono mb-4">
+          FREE · INSTITUTIONAL RESEARCH
+        </div>
+        <h2 class="text-2xl font-semibold text-zinc-100 mb-2">State of On-Chain Liquidity — Q1 2026</h2>
+        <p class="text-zinc-500 text-sm leading-relaxed max-w-lg">Solana DEX liquidity depth analysis, institutional whale flow trends, DEX vs. CEX volume shifts, and RWA on-chain activity. Built from Birdeye's proprietary data — not available from Kaiko, Artemis, or Glassnode.</p>
+        <div class="flex flex-wrap gap-2 mt-4">
+          <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500">Solana DEX depth benchmarks</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500">Institutional flow trends Q1</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500">RWA on-chain activity ($1.71B)</span>
+          <span class="text-xs px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-500">Pre-trade risk benchmarks</span>
+        </div>
+      </div>
+      <div class="w-full md:w-auto flex-shrink-0">
+        <form class="flex flex-col gap-3 w-full md:w-72">
+          <input type="email" placeholder="work@fund.com" class="w-full px-4 py-2.5 rounded bg-zinc-900 border border-zinc-800 text-sm text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-sky-500 transition-colors" />
+          <input type="text" placeholder="Fund / firm name" class="w-full px-4 py-2.5 rounded bg-zinc-900 border border-zinc-800 text-sm text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-sky-500 transition-colors" />
+          <button type="submit" class="w-full px-5 py-2.5 rounded bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium transition-colors">
+            Download free report
+          </button>
+          <p class="text-xs text-zinc-700 text-center">Institutional teams only. No sales calls.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAILURE (SB7 §6) ─────────────────── -->
+<!-- Research insight: institutions fear audit failure + LP accountability far more than trade slippage -->
+<section class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs font-mono text-red-400 uppercase tracking-widest mb-3">The cost of the status quo</p>
+      <h2 class="text-3xl font-semibold text-zinc-100 max-w-2xl mx-auto leading-snug">
+        What professional capital costs when the data isn't professional.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      <!-- Scenario 1: LP question -->
+      <div class="card-dark rounded-xl p-7 border border-red-500/8">
+        <div class="font-mono text-xs text-red-400 mb-4">SCENARIO A · QUARTERLY LP CALL</div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">Your LP asks: <em class="text-zinc-200">"Walk us through your on-chain exposure and how you're thinking about Solana DeFi risk."</em> You piece together data from four tools that don't share a taxonomy. The numbers don't reconcile. The LP's follow-up is worse.</p>
+        <div class="text-xs text-zinc-600 font-mono">COST: Credibility. Potentially the mandate.</div>
+      </div>
+
+      <!-- Scenario 2: Audit -->
+      <div class="card-dark rounded-xl p-7 border border-red-500/8">
+        <div class="font-mono text-xs text-red-400 mb-4">SCENARIO B · REGULATORY AUDIT</div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">Auditor requests on-chain provenance for every allocation in Q3. You have CEX trade logs. You don't have fair-value marks, DEX transaction histories, or the counterparty provenance documentation the auditor requires.</p>
+        <div class="text-xs text-zinc-600 font-mono">COST: Weeks of manual reconstruction. Potential finding.</div>
+      </div>
+
+      <!-- Scenario 3: Whale move -->
+      <div class="card-dark rounded-xl p-7 border border-red-500/8">
+        <div class="font-mono text-xs text-red-400 mb-4">SCENARIO C · MISSED WHALE SIGNAL</div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">Three institutional wallets accumulated $340M in a token over 48 hours — before the price moved. The signal was on-chain the entire time. Your tools were watching the CEX tape. You entered after the move.</p>
+        <div class="text-xs text-zinc-600 font-mono">COST: Entry at a 22% premium. Slippage on size.</div>
+      </div>
+
+      <!-- Scenario 4: Risk model failure -->
+      <div class="card-dark rounded-xl p-7 border border-red-500/8">
+        <div class="font-mono text-xs text-red-400 mb-4">SCENARIO D · RISK MODEL BLIND SPOT</div>
+        <p class="text-sm text-zinc-400 leading-relaxed mb-4">A large on-chain liquidation cascade began in DeFi derivatives at 3AM UTC. By the time it reached spot, your risk model had no signal. Traditional VaR doesn't model on-chain liquidation propagation.</p>
+        <div class="text-xs text-zinc-600 font-mono">COST: Unhedged drawdown. Post-mortem to the IC.</div>
+      </div>
+    </div>
+
+    <!-- Fear CTA -->
+    <div class="mt-10 text-center">
+      <p class="text-sm text-zinc-500 mb-4">Run a liquidity audit on your last 3 on-chain positions. See what your current tools missed.</p>
+      <a href="#demo" class="inline-flex items-center gap-2 px-6 py-3 rounded bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium transition-colors">
+        Request a data demo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BEFORE / AFTER (SB7 §7) ──────────── -->
+<section class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">The transformation</p>
+      <h2 class="text-3xl font-semibold text-zinc-100">Before and after Peak.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+      <div class="card-dark rounded-xl p-7 border border-red-500/8">
+        <div class="text-xs font-mono text-red-400 uppercase tracking-wider mb-6">Before Peak</div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 2l9 9M11 2L2 11" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-500">4 tools, no unified view — LP question requires 3 hours of reconciliation</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 2l9 9M11 2L2 11" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-500">CEX-only pricing misses DeFi fair value — mark-to-market is estimated</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 2l9 9M11 2L2 11" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-500">Audit response requires weeks of manual data extraction across vendors</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 2l9 9M11 2L2 11" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-500">Whale flow signals arrive after price — you're always one step behind</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 2l9 9M11 2L2 11" stroke="#ef4444" stroke-width="1.2" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-500">No Solana DEX depth — a strategic blind spot as Solana becomes institutional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-dark rounded-xl p-7 border border-emerald-500/8">
+        <div class="text-xs font-mono text-emerald-400 uppercase tracking-wider mb-6">After Peak</div>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 7l3.5 3.5 6.5-6.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-400">One terminal. IC-ready dashboards and LP reports generated in minutes</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 7l3.5 3.5 6.5-6.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-400">Multi-venue on-chain verified fair value marks — regulatory methodology included</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 7l3.5 3.5 6.5-6.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-400">SOC-2 audit trail always ready — respond to regulatory inquiries in hours, not weeks</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 7l3.5 3.5 6.5-6.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-400">Institutional flow signals 24–72 hours before price — you allocate early, not after</span>
+          </div>
+          <div class="flex items-start gap-3">
+            <svg class="flex-shrink-0 mt-0.5" width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M1.5 7l3.5 3.5 6.5-6.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <span class="text-sm text-zinc-400">Native Solana DEX intelligence — the only institutional terminal with this depth</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outcome states — status, wholeness, identity -->
+    <div class="mt-6 grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      <div class="stat-block rounded-xl p-5 text-center">
+        <div class="text-base font-semibold text-zinc-100 mb-1">Competitive edge</div>
+        <p class="text-xs text-zinc-500">"I make allocation decisions with on-chain conviction my peers can't replicate."</p>
+      </div>
+      <div class="stat-block rounded-xl p-5 text-center">
+        <div class="text-base font-semibold text-zinc-100 mb-1">LP confidence</div>
+        <p class="text-xs text-zinc-500">"Our quarterly reports are backed by verifiable on-chain data — not estimates."</p>
+      </div>
+      <div class="stat-block rounded-xl p-5 text-center">
+        <div class="text-base font-semibold text-zinc-100 mb-1">Institutional identity</div>
+        <p class="text-xs text-zinc-500">"Birdeye Peak is our source of truth. We adopted the standard before it became one."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ICP BY SEGMENT ──────────────────── -->
+<section class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-10">
+      <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">Who Peak is built for</p>
+      <h2 class="text-2xl font-semibold text-zinc-100">Different desks. Same data infrastructure need.</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div class="card-dark rounded-xl p-5">
+        <div class="text-xs font-mono text-sky-400 mb-2">CAT A</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-1">Crypto-native hedge funds</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Alpha generation, whale flow tracking, on-chain liquidity validation before large entries.</p>
+        <div class="text-xs text-zinc-700 font-mono">Lead pain: Blind to on-chain signals before price moves</div>
+        <div class="mt-2 text-xs text-zinc-700">APAC · Singapore · HK</div>
+      </div>
+      <div class="card-dark rounded-xl p-5">
+        <div class="text-xs font-mono text-sky-400 mb-2">CAT B</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-1">TradFi hedge funds & asset managers</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Compliance-grade data, LP transparency, risk monitoring, IC presentation support.</p>
+        <div class="text-xs text-zinc-700 font-mono">Lead pain: LP/IC reporting without verifiable on-chain backing</div>
+        <div class="mt-2 text-xs text-zinc-700">NA + EMEA · NYC · London</div>
+      </div>
+      <div class="card-dark rounded-xl p-5">
+        <div class="text-xs font-mono text-sky-400 mb-2">CAT C</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-1">VCs & digital asset funds</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">Token distribution monitoring, unlock event alerts, portfolio anomaly detection.</p>
+        <div class="text-xs text-zinc-700 font-mono">Lead pain: Missing unlock and distribution signals in portfolio</div>
+        <div class="mt-2 text-xs text-zinc-700">NA · All major hubs</div>
+      </div>
+      <div class="card-dark rounded-xl p-5">
+        <div class="text-xs font-mono text-sky-400 mb-2">CAT D</div>
+        <h4 class="text-sm font-semibold text-zinc-200 mb-1">Banks & institutional fintech</h4>
+        <p class="text-xs text-zinc-500 leading-relaxed mb-3">RWA infrastructure, unified CEX/DEX taxonomy, audit-grade compliance feeds.</p>
+        <div class="text-xs text-zinc-700 font-mono">Lead pain: No standard asset classification for on-chain positions</div>
+        <div class="mt-2 text-xs text-zinc-700">NA + EMEA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE PLAN (SB7 §4) ─────────────────── -->
+<section class="py-20 px-6">
+  <div class="max-w-4xl mx-auto text-center">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">The Conviction Framework</p>
+    <h2 class="text-2xl font-semibold text-zinc-100 mb-10">Three steps to institutional-grade on-chain intelligence.</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-left">
+      <div class="card-dark rounded-xl p-6 relative">
+        <div class="w-8 h-8 rounded-full border border-sky-400/30 bg-sky-400/5 flex items-center justify-center mb-4 font-mono text-xs text-sky-400 font-semibold">01</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Research & Audit</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">Run pre-trade liquidity audits, monitor whale flows, and track institutional signals before allocation. Exportable IC-ready reports included.</p>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="w-8 h-8 rounded-full border border-sky-400/30 bg-sky-400/5 flex items-center justify-center mb-4 font-mono text-xs text-sky-400 font-semibold">02</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Monitor & Manage Risk</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">Real-time portfolio exposure, fair value marks, derivatives risk signals, and on-chain liquidity monitoring — for mid office teams that need on-chain inputs.</p>
+      </div>
+      <div class="card-dark rounded-xl p-6">
+        <div class="w-8 h-8 rounded-full border border-sky-400/30 bg-sky-400/5 flex items-center justify-center mb-4 font-mono text-xs text-sky-400 font-semibold">03</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-2">Report & Comply</h3>
+        <p class="text-xs text-zinc-500 leading-relaxed">Generate LP reports, audit trails, and regulatory exports from the same data. SOC-2 certified. Compliance teams sign off in hours, not weeks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA (SB7 §5) ───────────────── -->
+<section id="demo" class="py-28 px-6">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4">Request access · Closed beta</p>
+    <h2 class="text-4xl font-semibold text-zinc-100 leading-snug mb-4">
+      The intelligence layer between your capital and on-chain chaos.
+    </h2>
+    <p class="text-zinc-500 text-sm mb-10 max-w-lg mx-auto leading-relaxed">A 30-minute data demo. We show you what your current tools can't see — live, on your own positions or a comparable fund profile. No pitch deck.</p>
+
+    <form class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
+      <input type="email" placeholder="work@fund.com" class="flex-1 px-4 py-3 rounded bg-zinc-900 border border-zinc-800 text-sm text-zinc-200 placeholder-zinc-700 focus:outline-none focus:border-sky-500 transition-colors" />
+      <button type="submit" class="flex-shrink-0 px-6 py-3 rounded bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium transition-colors glow">
+        Request a demo
+      </button>
+    </form>
+
+    <div class="mt-5 flex items-center justify-center gap-5 text-xs text-zinc-700">
+      <span>Institutional teams only</span>
+      <span>·</span>
+      <span>SOC-2 compliant</span>
+      <span>·</span>
+      <span>No public waitlist</span>
+      <span>·</span>
+      <span>Closed beta</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────── -->
+<footer class="border-t border-grid py-10 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+        <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+        <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+      </svg>
+      <span class="text-sm font-medium text-zinc-500">Birdeye <span class="text-sky-400">Peak</span></span>
+      <span class="text-zinc-800">·</span>
+      <span class="text-xs text-zinc-700">Institutional On-Chain Intelligence</span>
+    </div>
+    <div class="flex items-center gap-5 text-xs text-zinc-700">
+      <a href="#" class="hover:text-zinc-400 transition-colors">Data methodology</a>
+      <a href="#" class="hover:text-zinc-400 transition-colors">SOC-2 report</a>
+      <a href="#" class="hover:text-zinc-400 transition-colors">API docs</a>
+      <a href="#" class="hover:text-zinc-400 transition-colors">Privacy</a>
+    </div>
+    <div class="text-xs text-zinc-800 font-mono">© 2026 Birdeye · peak.birdeye.so</div>
+  </div>
+</footer>
+
+<script>
+  function switchTab(office) {
+    ['front','mid','back'].forEach(o => {
+      document.getElementById('tab-' + o).classList.remove('active');
+      document.getElementById('panel-' + o).classList.remove('active');
+    });
+    document.getElementById('tab-' + office).classList.add('active');
+    document.getElementById('panel-' + office).classList.add('active');
+  }
+</script>
+
+</body>
+</html>
