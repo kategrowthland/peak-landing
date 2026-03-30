@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birdeye Peak vs. Amberdata — Solana On-Chain vs. Ethereum-Centric DEX Coverage</title>
+  <meta name="description" content="Amberdata delivers broad digital asset coverage and AI-driven analytics. Birdeye Peak delivers what Amberdata's Ethereum-centric infrastructure cannot: real-time Solana DEX liquidity intelligence and pre-trade on-chain due diligence." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            accent: { DEFAULT: '#0EA5E9', dim: '#0284C7', muted: '#0c2d40' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #09090b; color: #e4e4e7; }
+    .border-grid { border-color: rgba(255,255,255,0.06); }
+    .card-dark { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); }
+    .card-dark:hover { background: rgba(255,255,255,0.04); border-color: rgba(14,165,233,0.25); transition: all 0.2s; }
+    .stat-block { background: rgba(14,165,233,0.05); border: 1px solid rgba(14,165,233,0.12); }
+    .glow { box-shadow: 0 0 50px rgba(14,165,233,0.1); }
+    section { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .check { color: #22c55e; }
+    .cross { color: #ef4444; }
+    .partial { color: #f59e0b; }
+    .peak-row { background: rgba(14,165,233,0.04); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ─── NAV ─────────────────────────────────── -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-grid backdrop-blur-md" style="background:rgba(9,9,11,0.88)">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+          <path d="M11 7L7 9.5V14.5L11 17L15 14.5V9.5L11 7Z" fill="#0EA5E9" opacity="0.3"/>
+          <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+        </svg>
+        <span class="text-sm font-semibold tracking-tight text-zinc-100">Birdeye <span class="text-sky-400">Peak</span></span>
+      </a>
+      <span class="ml-1 text-xs font-mono px-2 py-0.5 rounded border border-zinc-800 text-zinc-600">CLOSED BETA</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="platform-on-chain-intelligence.html" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Platform</a>
+      <a href="use-cases-pre-trade-due-diligence.html" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Use Cases</a>
+      <a href="vs-kaiko.html" class="text-xs text-sky-400 hidden sm:block">Compare</a>
+      <a href="index.html#demo" class="text-xs font-medium px-4 py-1.5 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white">Request demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="pt-32 pb-20 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+
+    <!-- Breadcrumb -->
+    <div class="mb-8 flex items-center justify-center gap-2 text-xs text-zinc-600 font-mono">
+      <a href="index.html" class="hover:text-zinc-400 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-zinc-500">Compare</span>
+      <span>/</span>
+      <span class="text-zinc-400">Peak vs. Amberdata</span>
+    </div>
+
+    <!-- VS Badge -->
+    <div class="mb-8 flex items-center justify-center gap-4">
+      <div class="px-5 py-2 rounded-lg border border-sky-400/30 bg-sky-400/5 text-sm font-semibold text-sky-400">Birdeye Peak</div>
+      <div class="text-zinc-600 font-mono text-sm font-bold">VS</div>
+      <div class="px-5 py-2 rounded-lg border border-zinc-700 text-sm font-semibold text-zinc-400">Amberdata</div>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-zinc-50 mb-5">
+      Amberdata Covers the Data Landscape.<br/>
+      <span class="text-sky-400">Peak Owns the Solana On-Chain Lane.</span>
+    </h1>
+    <p class="text-zinc-400 text-base leading-relaxed max-w-2xl mx-auto mb-8">
+      Amberdata delivers comprehensive historical data, AI-driven analytics, and broad digital asset coverage. Birdeye Peak delivers what Amberdata's Ethereum-centric infrastructure cannot: real-time Solana DEX liquidity intelligence and pre-trade on-chain due diligence.
+    </p>
+    <a href="index.html#demo" class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white text-sm font-medium glow">
+      Request a Peak Demo
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── SUMMARY CARDS ─────────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-zinc-500 mb-3 uppercase tracking-wider">Amberdata</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-3">Comprehensive digital asset data infrastructure with AI-driven intelligence.</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Broad historical coverage: markets, blockchain (ETH-centric), DeFi, derivatives, RWA</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">AI-driven analytics layer for institutional research workflows</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Ethereum DEX coverage: Uniswap, Sushiswap, Curve</span></li>
+          <li class="flex items-start gap-2"><span class="cross text-xs mt-0.5">✗</span><span class="text-xs text-zinc-500">Solana DEX protocols not covered — Raydium, Orca, Jupiter absent from DEX data dictionary</span></li>
+          <li class="flex items-start gap-2"><span class="cross text-xs mt-0.5">✗</span><span class="text-xs text-zinc-500">No pre-trade due diligence workflow for Solana on-chain positions</span></li>
+        </ul>
+      </div>
+      <div class="rounded-xl p-6 border border-sky-400/20" style="background:rgba(14,165,233,0.03)">
+        <div class="text-xs font-mono text-sky-400 mb-3 uppercase tracking-wider">Birdeye Peak</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-3">Purpose-built Solana on-chain intelligence for institutional capital allocators.</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Real-time Solana DEX liquidity depth, pool-level analytics for Raydium, Orca, Jupiter and 9+ more protocols</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Slippage modeling at institutional trade sizes ($1M, $5M, $10M+)</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Smart money wallet intelligence, pre-trade due diligence workflow</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Liquidity migration detection with advance signal window</span></li>
+          <li class="flex items-start gap-2"><span class="partial text-xs mt-0.5">~</span><span class="text-xs text-zinc-500">Narrower historical breadth for non-Solana chains vs. Amberdata's broad ETH archive</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE SOLANA GAP ────────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-3xl mx-auto">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4 text-center">The key gap</p>
+    <h2 class="text-2xl font-semibold text-zinc-100 mb-6 text-center leading-snug">Amberdata's DEX coverage is Ethereum-centric.<br/>Solana is where institutional on-chain volume now lives.</h2>
+
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Solana DEX protocol coverage</span>
+      </div>
+      <table class="w-full text-xs">
+        <thead>
+          <tr class="border-b border-zinc-800/50">
+            <th class="text-left px-5 py-3 text-zinc-600 font-normal">Protocol</th>
+            <th class="text-center px-4 py-3 text-sky-400 font-semibold">Peak</th>
+            <th class="text-center px-4 py-3 text-zinc-500 font-normal">Amberdata</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300">Raydium (Solana)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300">Orca (Solana)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300">Jupiter (Solana aggregator)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300">Meteora (Solana)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300">Phoenix (Solana CLOB)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Uniswap v3 (Ethereum)</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Curve (Ethereum)</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Sushiswap (Ethereum)</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-zinc-700 font-mono">Based on docs.amberdata.io/data-dictionary/coverage/coverage-defi-dex as of Q1 2026. Verify at time of evaluation.</p>
+  </div>
+</section>
+
+<!-- ─── FULL COMPARISON TABLE ─────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-8 text-center">Full capability comparison</h2>
+
+    <!-- On-Chain & DeFi -->
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">On-Chain & DeFi Coverage</span>
+      </div>
+      <table class="w-full text-xs">
+        <thead>
+          <tr class="border-b border-zinc-800/50">
+            <th class="text-left px-5 py-3 text-zinc-600 font-normal w-1/2">Capability</th>
+            <th class="text-center px-4 py-3 text-sky-400 font-semibold">Peak</th>
+            <th class="text-center px-4 py-3 text-zinc-500 font-normal">Amberdata</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400">Ethereum DEX liquidity depth</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">DeFi protocol analytics (ETH-based)</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Solana DEX liquidity depth</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Solana pool analytics</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Solana on-chain market structure</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Liquidity migration detection</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Slippage modeling at institutional trade sizes</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">CEX market data</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Derivatives / perpetuals data</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">RWA / tokenized asset data</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Wallet & Smart Money -->
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Wallet & Smart Money Intelligence</span>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400 w-1/2">On-chain wallet transaction history</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Smart money wallet cohort tracking</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 partial">~</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Whale net flow signals (real-time)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 partial">~</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Token holder concentration analysis</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 partial">~</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Token unlock event calendar</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 partial">~</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Analytics -->
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Analytics & Intelligence</span>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400 w-1/2">AI-driven analytics layer</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Institutional research workflow support</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Pre-trade on-chain due diligence workflow</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">IC-ready pre-trade report export</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Historical data depth (5+ years)</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Infrastructure -->
+    <div class="card-dark rounded-xl overflow-hidden">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Infrastructure & Compliance</span>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400 w-1/2">SOC-2 certification</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">REST + WebSocket API</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">99.9% uptime SLA</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Compliance audit trail exports</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Sub-50ms signal latency (Solana)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-zinc-700 mt-3 font-mono">✓ Full &nbsp;~ Partial &nbsp;✗ Not covered &nbsp;· Based on public documentation as of Q1 2026. Verify at time of evaluation.</p>
+  </div>
+</section>
+
+<!-- ─── STATS ──────────────────────────────── -->
+<div class="py-12 px-6 border-y border-grid">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">0</div>
+      <div class="text-xs text-zinc-600 font-mono">Solana DEX protocols<br/>in Amberdata DEX dict.</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-sky-400 mb-1">12+</div>
+      <div class="text-xs text-zinc-600 font-mono">Solana DEX protocols<br/>covered by Peak</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">3</div>
+      <div class="text-xs text-zinc-600 font-mono">ETH DEX protocols<br/>covered by both</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">&lt;50ms</div>
+      <div class="text-xs text-zinc-600 font-mono">Peak Solana<br/>on-chain latency</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHEN TO USE WHICH ──────────────────── -->
+<section class="py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-8 text-center">When to use which.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <h3 class="text-sm font-semibold text-zinc-300 mb-4">Use Amberdata when you need:</h3>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Broad historical coverage across markets, blockchain (ETH-centric), and DeFi</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">AI-driven analytics and research workflow features</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Ethereum-focused DeFi protocol analytics</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">RWA and tokenized asset data infrastructure</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Multi-year historical data depth for backtesting on ETH chains</span></li>
+        </ul>
+      </div>
+      <div class="rounded-xl p-6 border border-sky-400/20" style="background:rgba(14,165,233,0.03)">
+        <h3 class="text-sm font-semibold text-sky-400 mb-4">Use Birdeye Peak when you need:</h3>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Real-time Solana DEX liquidity depth for institutional-size allocation</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Pre-trade on-chain due diligence before token entry</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Smart money wallet tracking and institutional accumulation signals</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Liquidity migration detection with advance warning signals</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">On-chain evidence layer for IC reports on Solana positions</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-6 card-dark rounded-xl p-5 border border-zinc-700/50">
+      <p class="text-xs text-zinc-500 leading-relaxed text-center">
+        <span class="text-zinc-300 font-semibold">These platforms serve different coverage needs.</span> Amberdata brings breadth across the digital asset landscape with strong ETH-chain depth. Peak brings Solana on-chain intelligence that Amberdata's infrastructure wasn't built to cover. Funds running Solana exposure benefit from running both.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RELATED ────────────────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs font-mono text-zinc-600 uppercase tracking-widest mb-6">Explore further</p>
+    <div class="grid sm:grid-cols-3 gap-4">
+      <a href="platform-on-chain-intelligence.html" class="card-dark rounded-xl p-5 group">
+        <div class="text-xs font-mono text-sky-400 mb-2">PLATFORM</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-1 group-hover:text-sky-400 transition-colors">On-Chain Intelligence</h3>
+        <p class="text-xs text-zinc-600">The full data platform covering what Amberdata doesn't.</p>
+      </a>
+      <a href="use-cases-pre-trade-due-diligence.html" class="card-dark rounded-xl p-5 group">
+        <div class="text-xs font-mono text-sky-400 mb-2">USE CASE</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-1 group-hover:text-sky-400 transition-colors">Pre-Trade Due Diligence</h3>
+        <p class="text-xs text-zinc-600">The workflow Amberdata doesn't offer for Solana allocations.</p>
+      </a>
+      <a href="vs-kaiko.html" class="card-dark rounded-xl p-5 group">
+        <div class="text-xs font-mono text-zinc-600 mb-2">COMPARE</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-1 group-hover:text-sky-400 transition-colors">Peak vs. Kaiko</h3>
+        <p class="text-xs text-zinc-600">CEX market data vs. on-chain DEX intelligence.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────── -->
+<section class="py-24 px-6">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4">See the Solana gap, live</p>
+    <h2 class="text-3xl font-semibold text-zinc-100 leading-snug mb-4">
+      The on-chain Solana intelligence layer Amberdata doesn't cover.
+    </h2>
+    <p class="text-zinc-500 text-sm mb-8 max-w-lg mx-auto leading-relaxed">We run a live demo on a Solana token you're evaluating — showing you the liquidity depth, wallet signals, and pre-trade data that's invisible to ETH-centric platforms. 30 minutes.</p>
+    <a href="index.html#demo" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white text-sm font-medium glow">
+      Request a Peak Demo
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <p class="mt-4 text-xs text-zinc-700">Institutional teams only · SOC-2 compliant · Closed beta</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────── -->
+<footer class="border-t border-grid py-10 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+        <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+        <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+      </svg>
+      <span class="text-sm font-medium text-zinc-500">Birdeye <span class="text-sky-400">Peak</span></span>
+      <span class="text-zinc-800">·</span>
+      <span class="text-xs text-zinc-700">Institutional On-Chain Intelligence</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-5 text-xs text-zinc-700">
+      <a href="platform-on-chain-intelligence.html" class="hover:text-zinc-400 transition-colors">On-Chain Intelligence</a>
+      <a href="use-cases-pre-trade-due-diligence.html" class="hover:text-zinc-400 transition-colors">Pre-Trade Due Diligence</a>
+      <a href="vs-kaiko.html" class="hover:text-zinc-400 transition-colors">vs Kaiko</a>
+      <a href="vs-amberdata.html" class="hover:text-zinc-400 transition-colors">vs Amberdata</a>
+      <a href="#" class="hover:text-zinc-400 transition-colors">API docs</a>
+    </div>
+    <div class="text-xs text-zinc-800 font-mono">© 2026 Birdeye · peak.birdeye.so</div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birdeye Peak vs. Kaiko — On-Chain DEX vs. CEX Market Data</title>
+  <meta name="description" content="Kaiko is the institutional standard for centralized exchange data. Birdeye Peak covers what Kaiko doesn't: real-time Solana DEX liquidity depth, on-chain market structure, and pre-trade due diligence." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            accent: { DEFAULT: '#0EA5E9', dim: '#0284C7', muted: '#0c2d40' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #09090b; color: #e4e4e7; }
+    .border-grid { border-color: rgba(255,255,255,0.06); }
+    .card-dark { background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07); }
+    .card-dark:hover { background: rgba(255,255,255,0.04); border-color: rgba(14,165,233,0.25); transition: all 0.2s; }
+    .stat-block { background: rgba(14,165,233,0.05); border: 1px solid rgba(14,165,233,0.12); }
+    .glow { box-shadow: 0 0 50px rgba(14,165,233,0.1); }
+    section { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .check { color: #22c55e; }
+    .cross { color: #ef4444; }
+    .partial { color: #f59e0b; }
+    .peak-row { background: rgba(14,165,233,0.04); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+<!-- ─── NAV ─────────────────────────────────── -->
+<nav class="fixed top-0 left-0 right-0 z-50 border-b border-grid backdrop-blur-md" style="background:rgba(9,9,11,0.88)">
+  <div class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+          <path d="M11 7L7 9.5V14.5L11 17L15 14.5V9.5L11 7Z" fill="#0EA5E9" opacity="0.3"/>
+          <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+        </svg>
+        <span class="text-sm font-semibold tracking-tight text-zinc-100">Birdeye <span class="text-sky-400">Peak</span></span>
+      </a>
+      <span class="ml-1 text-xs font-mono px-2 py-0.5 rounded border border-zinc-800 text-zinc-600">CLOSED BETA</span>
+    </div>
+    <div class="flex items-center gap-6">
+      <a href="platform-on-chain-intelligence.html" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Platform</a>
+      <a href="use-cases-pre-trade-due-diligence.html" class="text-xs text-zinc-500 hover:text-zinc-300 transition-colors hidden sm:block">Use Cases</a>
+      <a href="vs-kaiko.html" class="text-xs text-sky-400 hidden sm:block">Compare</a>
+      <a href="index.html#demo" class="text-xs font-medium px-4 py-1.5 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white">Request demo</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────── -->
+<section class="pt-32 pb-20 px-6">
+  <div class="max-w-5xl mx-auto text-center">
+
+    <!-- Breadcrumb -->
+    <div class="mb-8 flex items-center justify-center gap-2 text-xs text-zinc-600 font-mono">
+      <a href="index.html" class="hover:text-zinc-400 transition-colors">Home</a>
+      <span>/</span>
+      <span class="text-zinc-500">Compare</span>
+      <span>/</span>
+      <span class="text-zinc-400">Peak vs. Kaiko</span>
+    </div>
+
+    <!-- VS Badge -->
+    <div class="mb-8 flex items-center justify-center gap-4">
+      <div class="px-5 py-2 rounded-lg border border-sky-400/30 bg-sky-400/5 text-sm font-semibold text-sky-400">Birdeye Peak</div>
+      <div class="text-zinc-600 font-mono text-sm font-bold">VS</div>
+      <div class="px-5 py-2 rounded-lg border border-zinc-700 text-sm font-semibold text-zinc-400">Kaiko</div>
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-zinc-50 mb-5">
+      Kaiko Shows You the Exchange.<br/>
+      <span class="text-sky-400">Peak Shows You the On-Chain Truth.</span>
+    </h1>
+    <p class="text-zinc-400 text-base leading-relaxed max-w-2xl mx-auto mb-8">
+      Kaiko is the institutional standard for centralized exchange market data. Birdeye Peak is built for the on-chain intelligence layer that CEX data cannot provide — particularly across Solana's DEX ecosystem. Many institutional desks use both.
+    </p>
+    <a href="index.html#demo" class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white text-sm font-medium glow">
+      Request a Peak Demo
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── SUMMARY CARDS ─────────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <div class="text-xs font-mono text-zinc-500 mb-3 uppercase tracking-wider">Kaiko</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-3">Institutional CEX market data infrastructure.</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Best-in-class normalized trade, order book, and pricing data from 400+ centralized exchanges</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Deep historical data going back to 2013 for compliance and benchmarking</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Regulatory-grade reference rates and index methodology</span></li>
+          <li class="flex items-start gap-2"><span class="cross text-xs mt-0.5">✗</span><span class="text-xs text-zinc-500">No Solana DEX coverage — Raydium, Orca, Jupiter not indexed</span></li>
+          <li class="flex items-start gap-2"><span class="cross text-xs mt-0.5">✗</span><span class="text-xs text-zinc-500">No on-chain pool liquidity depth, slippage modeling, or pool analytics</span></li>
+        </ul>
+      </div>
+      <div class="rounded-xl p-6 border border-sky-400/20" style="background:rgba(14,165,233,0.03)">
+        <div class="text-xs font-mono text-sky-400 mb-3 uppercase tracking-wider">Birdeye Peak</div>
+        <h3 class="text-sm font-semibold text-zinc-200 mb-3">Institutional on-chain intelligence, Solana-native.</h3>
+        <ul class="space-y-2">
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Real-time DEX liquidity depth, on-chain market structure, and pool-level analytics for Solana and multi-chain</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Smart money wallet tracking, whale net flow, institutional accumulation signals</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">Pre-trade due diligence workflow — liquidity, concentration, unlocks, migration</span></li>
+          <li class="flex items-start gap-2"><span class="check text-xs mt-0.5">✓</span><span class="text-xs text-zinc-500">CEX market data included via integrated coverage of major exchanges</span></li>
+          <li class="flex items-start gap-2"><span class="partial text-xs mt-0.5">~</span><span class="text-xs text-zinc-500">Historical depth less extensive than Kaiko for pre-2020 CEX data</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE STRUCTURAL GAP ─────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-3xl mx-auto text-center">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4">The core difference</p>
+    <h2 class="text-2xl font-semibold text-zinc-100 mb-5 leading-snug">
+      On-chain DeFi and centralized exchanges are different markets with different mechanics.
+    </h2>
+    <p class="text-zinc-500 text-sm leading-relaxed mb-5">
+      Kaiko's institutional strength is in centralized exchange data: normalized, high-frequency, deeply historical. It is well-suited for compliance reporting, benchmark construction, and CEX-based derivatives analytics.
+    </p>
+    <p class="text-zinc-500 text-sm leading-relaxed">
+      The institutional capital allocator who needs to evaluate or execute in Solana's on-chain DEX ecosystem — Raydium, Orca, Jupiter — is operating in a market that Kaiko was not built to cover. The question is not which provider is better. It is which provider covers the intelligence you need for the decision you're making.
+    </p>
+  </div>
+</section>
+
+<!-- ─── COMPARISON TABLE ───────────────────── -->
+<section class="py-16 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-6 text-center">Full capability comparison</h2>
+
+    <!-- Market Data -->
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Market Data</span>
+      </div>
+      <table class="w-full text-xs">
+        <thead>
+          <tr class="border-b border-zinc-800/50">
+            <th class="text-left px-5 py-3 text-zinc-600 font-normal w-1/2">Capability</th>
+            <th class="text-center px-4 py-3 text-sky-400 font-semibold">Peak</th>
+            <th class="text-center px-4 py-3 text-zinc-500 font-normal">Kaiko</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400">CEX trade data (400+ exchanges)</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">CEX order book depth</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Regulatory reference rates</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Historical CEX data (pre-2020)</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Derivatives / perpetuals data</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Solana DEX liquidity depth (Raydium, Orca, Jupiter)</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Solana pool analytics</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Slippage modeling at institutional trade sizes</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Intelligence Layer -->
+    <div class="card-dark rounded-xl overflow-hidden mb-4">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Intelligence Layer</span>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium w-1/2">Smart money wallet tracking</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Whale net flow signals</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Token holder concentration analysis</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Token unlock event calendar</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Pre-trade due diligence workflow</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">Liquidity migration detection</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Analytics & Compliance -->
+    <div class="card-dark rounded-xl overflow-hidden">
+      <div class="px-5 py-3 border-b border-zinc-800 bg-zinc-900/40">
+        <span class="text-xs font-mono text-zinc-500 uppercase tracking-wider">Analytics & Compliance</span>
+      </div>
+      <table class="w-full text-xs">
+        <tbody class="divide-y divide-zinc-800/40">
+          <tr><td class="px-5 py-3 text-zinc-400 w-1/2">SOC-2 certification</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Compliance-grade audit trail exports</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">REST + WebSocket API</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">99.9% uptime SLA</td><td class="text-center px-4 py-3 check">✓</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr><td class="px-5 py-3 text-zinc-400">Benchmark index construction support</td><td class="text-center px-4 py-3 partial">~</td><td class="text-center px-4 py-3 check">✓</td></tr>
+          <tr class="peak-row"><td class="px-5 py-3 text-zinc-300 font-medium">IC-ready pre-trade report export</td><td class="text-center px-4 py-3 check font-semibold">✓</td><td class="text-center px-4 py-3 cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-zinc-700 mt-3 font-mono">✓ Full coverage &nbsp;~ Partial &nbsp;✗ Not covered &nbsp;· Based on public documentation as of Q1 2026. Verify at time of evaluation.</p>
+  </div>
+</section>
+
+<!-- ─── SOLANA DEX STAT ────────────────────── -->
+<div class="py-12 px-6 border-y border-grid">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">0</div>
+      <div class="text-xs text-zinc-600 font-mono">Solana DEX protocols<br/>covered by Kaiko</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-sky-400 mb-1">12+</div>
+      <div class="text-xs text-zinc-600 font-mono">Solana DEX protocols<br/>covered by Peak</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">400+</div>
+      <div class="text-xs text-zinc-600 font-mono">CEX exchanges<br/>covered by Kaiko</div>
+    </div>
+    <div>
+      <div class="text-3xl font-semibold text-zinc-100 mb-1">&lt;50ms</div>
+      <div class="text-xs text-zinc-600 font-mono">Peak on-chain<br/>signal latency</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── WHEN TO USE WHICH ──────────────────── -->
+<section class="py-20 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-xl font-semibold text-zinc-100 mb-8 text-center">When to use which.</h2>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div class="card-dark rounded-xl p-6">
+        <h3 class="text-sm font-semibold text-zinc-300 mb-4">Use Kaiko when you need:</h3>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Deep historical CEX price and volume data for backtesting or compliance</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Regulatory-grade reference rates and index methodology support</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Normalized, auditable CEX trade data across 400+ exchanges</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">CEX-based derivatives analytics (perpetuals, funding rates)</span></li>
+          <li class="flex items-start gap-2"><span class="text-zinc-600 text-xs mt-0.5">→</span><span class="text-xs text-zinc-500">Pre-2020 historical data for benchmark construction</span></li>
+        </ul>
+      </div>
+      <div class="rounded-xl p-6 border border-sky-400/20" style="background:rgba(14,165,233,0.03)">
+        <h3 class="text-sm font-semibold text-sky-400 mb-4">Use Birdeye Peak when you need:</h3>
+        <ul class="space-y-2.5">
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Real-time Solana DEX liquidity depth for institutional-size trades</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">On-chain pre-trade due diligence before token allocation</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Smart money wallet tracking and whale flow signals</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">Token holder concentration and unlock event monitoring</span></li>
+          <li class="flex items-start gap-2"><span class="text-sky-400 text-xs mt-0.5">→</span><span class="text-xs text-zinc-400">On-chain evidence for IC reports and LP reporting</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6 card-dark rounded-xl p-5 border border-zinc-700/50">
+      <p class="text-xs text-zinc-500 leading-relaxed text-center">
+        <span class="text-zinc-300 font-semibold">Many institutional desks run both.</span> Kaiko handles CEX market data and compliance requirements. Peak handles on-chain DEX intelligence and pre-trade due diligence. They cover different layers of the same investment process.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────── -->
+<section class="py-24 px-6">
+  <div class="max-w-2xl mx-auto text-center">
+    <p class="text-xs font-mono text-sky-400 uppercase tracking-widest mb-4">See the on-chain layer</p>
+    <h2 class="text-3xl font-semibold text-zinc-100 leading-snug mb-4">
+      The Solana on-chain data your current stack doesn't have.
+    </h2>
+    <p class="text-zinc-500 text-sm mb-8 max-w-lg mx-auto leading-relaxed">We show you what Peak surfaces that Kaiko — and every other CEX-first provider — can't cover. 30 minutes, live data.</p>
+    <a href="index.html#demo" class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-sky-500 hover:bg-sky-600 transition-colors text-white text-sm font-medium glow">
+      Request a Peak Demo
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+    <p class="mt-4 text-xs text-zinc-700">Institutional teams only · SOC-2 compliant · Closed beta</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────── -->
+<footer class="border-t border-grid py-10 px-6">
+  <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+        <path d="M11 2L3 7V15L11 20L19 15V7L11 2Z" stroke="#0EA5E9" stroke-width="1.5" fill="none"/>
+        <circle cx="11" cy="11" r="2" fill="#0EA5E9"/>
+      </svg>
+      <span class="text-sm font-medium text-zinc-500">Birdeye <span class="text-sky-400">Peak</span></span>
+      <span class="text-zinc-800">·</span>
+      <span class="text-xs text-zinc-700">Institutional On-Chain Intelligence</span>
+    </div>
+    <div class="flex flex-wrap items-center gap-5 text-xs text-zinc-700">
+      <a href="platform-on-chain-intelligence.html" class="hover:text-zinc-400 transition-colors">On-Chain Intelligence</a>
+      <a href="use-cases-pre-trade-due-diligence.html" class="hover:text-zinc-400 transition-colors">Pre-Trade Due Diligence</a>
+      <a href="vs-kaiko.html" class="hover:text-zinc-400 transition-colors">vs Kaiko</a>
+      <a href="vs-amberdata.html" class="hover:text-zinc-400 transition-colors">vs Amberdata</a>
+      <a href="#" class="hover:text-zinc-400 transition-colors">API docs</a>
+    </div>
+    <div class="text-xs text-zinc-800 font-mono">© 2026 Birdeye · peak.birdeye.so</div>
+  </div>
+</footer>
+
+</body>
+</html>
