@@ -1,1 +1,6 @@
-{"rewrites":[{"source":"/","destination":"/peak-landing-page.html"}]}
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/peak-landing-page.html" }
+  ]
+}
